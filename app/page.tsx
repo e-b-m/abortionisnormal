@@ -36,6 +36,12 @@ export default function Home() {
             >
               Information
             </Link>
+            <Link
+              href="/archiving-abortion"
+              className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-rose-600 transition hover:bg-white/10"
+            >
+              Archiving abortion
+            </Link>
             <a
               href="https://github.com/"
               target="_blank"
