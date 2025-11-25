@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pinGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9a8d4" />
+      <stop offset="100%" stop-color="#f472b6" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#f472b6" flood-opacity="0.35" />
+    </filter>
+  </defs>
+  <path
+    d="M32 4c-9.941 0-18 7.716-18 17.233 0 12.18 15.41 29.915 17.291 32.09a1 1 0 0 0 1.418 0C34.59 51.148 50 33.413 50 21.233 50 11.716 41.941 4 32 4z"
+    fill="url(#pinGradient)"
+    filter="url(#shadow)"
+  />
+  <circle cx="32" cy="24" r="6" fill="#fff" opacity="0.85" />
+</svg>

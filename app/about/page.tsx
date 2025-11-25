@@ -22,12 +22,15 @@ const sections = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-pink-100 text-rose-900">
-      <div className="mx-auto max-w-5xl px-6 py-16 space-y-16">
+      <div className="mx-auto max-w-5xl px-6 py-16 space-y-16 font-sans">
         <header className="space-y-4 text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-rose-600">
             About the project
           </p>
-          <h1 className="text-5xl font-bold uppercase tracking-widest text-rose-800">
+          <h1
+            className="text-5xl font-bold uppercase tracking-widest text-rose-800"
+            style={{ fontFamily: "var(--font-queer-map)" }}
+          >
             Abortion Is Normal
           </h1>
           <p className="text-lg text-rose-600">
@@ -53,7 +56,10 @@ export default function AboutPage() {
         </section>
 
         <section className="rounded-[32px] border border-rose-200 bg-white p-8 text-center shadow-2xl">
-          <h3 className="text-3xl font-semibold uppercase tracking-wide text-rose-800">
+          <h3
+            className="text-3xl font-semibold uppercase tracking-wide text-rose-800"
+            style={{ fontFamily: "var(--font-queer-map)" }}
+          >
             Ready to add your story?
           </h3>
           <p className="mt-3 text-rose-600">
