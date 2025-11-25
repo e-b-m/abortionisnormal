@@ -1,7 +1,7 @@
 // app/page.tsx
 
 import Link from "next/link";
-import MapWrapper from "../components /MapWrapper";
+import MapWrapper from "../components/MapWrapper";
 
 export default function Home() {
   return (
