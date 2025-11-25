@@ -21,16 +21,16 @@ const sections = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-fuchsia-900 via-rose-800 to-orange-600 text-rose-50">
+    <main className="min-h-screen bg-pink-100 text-rose-900">
       <div className="mx-auto max-w-5xl px-6 py-16 space-y-16">
         <header className="space-y-4 text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-rose-200">
+          <p className="text-xs uppercase tracking-[0.4em] text-rose-600">
             About the project
           </p>
-          <h1 className="text-5xl font-bold uppercase tracking-widest">
+          <h1 className="text-5xl font-bold uppercase tracking-widest text-rose-800">
             Abortion Is Normal
           </h1>
-          <p className="text-lg text-rose-100">
+          <p className="text-lg text-rose-600">
             Inspired by Queering the Map, this experiment documents abortion
             stories, rituals, awe, and grief across every geography.
           </p>
@@ -40,30 +40,30 @@ export default function AboutPage() {
           {sections.map((section) => (
             <article
               key={section.title}
-              className="rounded-3xl border border-white/20 bg-white/10 p-6 shadow-lg backdrop-blur"
+              className="rounded-3xl border border-rose-200 bg-white p-6 shadow-lg"
             >
-              <h2 className="text-sm uppercase tracking-[0.3em] text-rose-200">
+              <h2 className="text-sm uppercase tracking-[0.3em] text-rose-500">
                 {section.title}
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-rose-50">
+              <p className="mt-3 text-sm leading-relaxed text-rose-700">
                 {section.body}
               </p>
             </article>
           ))}
         </section>
 
-        <section className="rounded-[32px] border border-white/30 bg-white/10 p-8 text-center shadow-2xl backdrop-blur">
-          <h3 className="text-3xl font-semibold uppercase tracking-wide">
+        <section className="rounded-[32px] border border-rose-200 bg-white p-8 text-center shadow-2xl">
+          <h3 className="text-3xl font-semibold uppercase tracking-wide text-rose-800">
             Ready to add your story?
           </h3>
-          <p className="mt-3 text-rose-100">
+          <p className="mt-3 text-rose-600">
             Head back to the map, drop a pin, and leave a note. Want to shape
             the platform itself? Jump into the repo and make it better.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Link
               href="/"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-rose-600 transition hover:bg-rose-100 hover:text-rose-700"
+              className="rounded-full bg-rose-600 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-rose-700"
             >
               Launch the map
             </Link>
@@ -71,7 +71,7 @@ export default function AboutPage() {
               href="https://github.com/"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-rose-50 transition hover:bg-white/10"
+              className="rounded-full border border-rose-300 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-rose-700 transition hover:bg-rose-50"
             >
               View the repo
             </a>
