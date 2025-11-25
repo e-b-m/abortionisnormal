@@ -51,7 +51,7 @@ export default function LeafletMap({
   draftPin,
   onSelectLocation,
 }: LeafletMapProps) {
-  const initialPosition: [number, number] = [37.7749, -122.4194];
+  const initialPosition: [number, number] = [51.5074, -0.1278];
 
   return (
     <MapContainer

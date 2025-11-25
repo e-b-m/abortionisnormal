@@ -30,6 +30,12 @@ export default function Home() {
             >
               Learn more
             </Link>
+            <Link
+              href="/information"
+              className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-rose-600 transition hover:bg-white/10"
+            >
+              Information
+            </Link>
             <a
               href="https://github.com/"
               target="_blank"

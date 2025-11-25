@@ -5,12 +5,12 @@ const sections = [
   {
     title: "Archiving care",
     body:
-      "Every pin is a reminder that abortion is woven into daily life. We collect anonymous notes to show lawmakers, neighbors, and ourselves that care is everywhere.",
+      "Every pin is a reminder that abortion is a part of daily life. We collect anonymous notes to show lawmakers, neighbours and ourselves that care is everywhere. Now more than ever compassion is crucial. Though our opinions may differ the right to bodily autonomy is a fundamental.",
   },
   {
     title: "Built together",
     body:
-      "The map is open-source. Designers, devs, researchers, and storytellers are all invited. Suggest features, file issues, or submit pull requests.",
+      "The map is open-source. Designers, devs, researchers and storytellers are all invited. Suggest features, file issues, or submit pull requests.",
   },
   {
     title: "Community rules",
@@ -35,9 +35,40 @@ export default function AboutPage() {
           </h1>
           <p className="text-lg text-rose-600">
             Inspired by Queering the Map, this experiment documents abortion
-            stories, rituals, awe, and grief across every geography.
+            stories, rituals, awe, and grief—starting with the UK and radiating
+            outward as the archive grows.
           </p>
         </header>
+
+        <section className="rounded-3xl border border-rose-200 bg-white p-6 text-left shadow-lg">
+          <p className="text-xs uppercase tracking-[0.4em] text-rose-500">
+            About the maker
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold text-rose-800">
+            A personal project rooted in care
+          </h2>
+          <p className="mt-4 text-rose-700">
+            I&apos;m a storyteller, writer and visual communicator who had an
+            abortion in 2022 at the height of Roe v. Wade. It remains one of the
+            most difficult choices I have had to make and one that I didn&apos;t
+            make lightly, yet I struggled for a long time with acknowledging
+            this decision. Like many who experience or encounter abortion it is
+            complex, layered and is not always easy to prepare for. Community
+            support matters. Building this map is my way of providing a space
+            for archiving stories, thoughts, and learnings on the subject of
+            abortion and women&apos;s health surrounding it. It&apos;s to
+            catalogue history and information to inform and empower generations
+            to come—most importantly to destigmatise and encourage discourse.
+            It&apos;s part art piece, part resource, and part love letter to
+            everyone who has needed an abortion or helped someone through one.
+          </p>
+          <p className="mt-3 text-rose-700">
+            Outside of this project, I host teach-ins, collaborate with mutual
+            aid groups, and document oral histories so our stories don’t get
+            erased. If you want to collaborate or just say hi, reach out through
+            the feedback form or reach me via the Contact page. 
+          </p>
+        </section>
 
         <section className="grid gap-6 md:grid-cols-3">
           {sections.map((section) => (
