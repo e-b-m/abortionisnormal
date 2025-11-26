@@ -27,12 +27,14 @@ export default function AboutPage() {
           <p className="text-xs uppercase tracking-[0.4em] text-rose-600">
             About the project
           </p>
-          <h1
-            className="text-5xl font-bold uppercase tracking-widest text-rose-800"
-            style={{ fontFamily: "var(--font-queer-map)" }}
-          >
-            Abortion Is Normal
-          </h1>
+          <Link href="/" aria-label="Back to the map">
+            <h1
+              className="text-5xl font-bold uppercase tracking-widest text-rose-800 transition hover:text-rose-600"
+              style={{ fontFamily: "var(--font-queer-map)" }}
+            >
+              Abortion Is Normal
+            </h1>
+          </Link>
           <p className="text-lg text-rose-600">
             Inspired by Queering the Map, this experiment documents abortion
             stories, rituals, awe, and grief—starting with the UK and radiating

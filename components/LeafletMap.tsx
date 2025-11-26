@@ -7,9 +7,11 @@ import {
   Marker,
   Popup,
   useMapEvents,
+  useMap,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L, { LatLngLiteral } from 'leaflet';
+import { useEffect } from 'react';
 
 export type StoryPin = {
   id: string;
@@ -22,6 +24,7 @@ export type LeafletMapProps = {
   pins: StoryPin[];
   draftPin: LatLngLiteral | null;
   onSelectLocation: (coords: LatLngLiteral) => void;
+  focusedLocation: LatLngLiteral | null;
 };
 
 const pastelIcon = L.icon({
@@ -46,10 +49,21 @@ function MapClickHandler({
   return null;
 }
 
+function FlyToLocation({ coords }: { coords: LatLngLiteral | null }) {
+  const map = useMap();
+  useEffect(() => {
+    if (coords) {
+      map.flyTo(coords, 11, { duration: 1.2 });
+    }
+  }, [coords, map]);
+  return null;
+}
+
 export default function LeafletMap({
   pins,
   draftPin,
   onSelectLocation,
+  focusedLocation,
 }: LeafletMapProps) {
   const initialPosition: [number, number] = [51.5074, -0.1278];
 
@@ -65,6 +79,7 @@ export default function LeafletMap({
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
       <MapClickHandler onSelectLocation={onSelectLocation} />
+      <FlyToLocation coords={focusedLocation} />
       {pins.map((pin) => (
         <Marker
           key={pin.id}

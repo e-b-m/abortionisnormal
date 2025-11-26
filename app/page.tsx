@@ -7,7 +7,6 @@ const navLinks = [
   { label: "Learn more", href: "/about" },
   { label: "Information", href: "/information" },
   { label: "Archiving abortion", href: "/archiving-abortion" },
-  { label: "Contribute", href: "https://github.com/", external: true },
 ];
 
 export default function Home() {
@@ -122,7 +121,7 @@ export default function Home() {
             <div className="overflow-hidden border border-white/30 bg-white/10 shadow-2xl backdrop-blur">
               <MapWrapper />
             </div>
-            <p className="font-sans mt-4 text-sm text-rose-200">
+            <p className="font-sans mt-4 text-sm text-rose-600">
               Click any point to read the story or add your own. All data is
               anonymous; we only store the note you leave.
             </p>

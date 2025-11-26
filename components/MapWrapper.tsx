@@ -17,6 +17,12 @@ export default function MapWrapper() {
   const [draftPin, setDraftPin] = useState<LatLngLiteral | null>(null);
   const [note, setNote] = useState('');
   const [status, setStatus] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const [focusedLocation, setFocusedLocation] = useState<LatLngLiteral | null>({
+    lat: 51.5074,
+    lng: -0.1278,
+  });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -40,10 +46,82 @@ export default function MapWrapper() {
     setStatus('Story added to the map. Thank you.');
   };
 
+  const handleLocationJump = async () => {
+    const query = searchTerm.trim();
+    if (!query) {
+      setStatus('Type a city, town, or landmark to jump there.');
+      return;
+    }
+    try {
+      setIsSearching(true);
+      setStatus('Searching for that place...');
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+          query,
+        )}&format=json&limit=1`,
+        {
+          headers: {
+            'User-Agent':
+              'abortion-is-normal/1.0 (https://abortion-is-normal.local)',
+          },
+        },
+      );
+      if (!response.ok) {
+        throw new Error('Failed to search location');
+      }
+      const results: Array<{ lat: string; lon: string; display_name: string }> =
+        await response.json();
+      if (!results.length) {
+        setStatus('No results found. Try another place or add more detail.');
+        return;
+      }
+      const first = results[0];
+      const coords = { lat: Number(first.lat), lng: Number(first.lon) };
+      setFocusedLocation(coords);
+      setDraftPin(coords);
+      setStatus(`Centered on ${first.display_name}.`);
+    } catch {
+      setStatus('Could not reach the global search service right now.');
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleMapSelection = (coords: LatLngLiteral) => {
+    setDraftPin(coords);
+    setFocusedLocation(coords);
+  };
+
   return (
     <div className="space-y-4">
-      <Map pins={pins} draftPin={draftPin} onSelectLocation={setDraftPin} />
-      <form
+      <div className="rounded-xl border border-rose-200 bg-white/80 p-4 shadow-md">
+        <label className="flex flex-col gap-2 text-sm text-rose-700 sm:flex-row sm:items-center">
+          <span>Jump anywhere in the world</span>
+          <div className="flex w-full gap-2">
+            <input
+              className="w-full rounded-lg border border-rose-200 bg-white/90 p-2 text-sm text-rose-900 focus:border-rose-400 focus:outline-none"
+              placeholder="e.g. Manila, Lagos, São Paulo"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+            <button
+              type="button"
+              className="rounded-full bg-rose-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-rose-700 disabled:bg-rose-300"
+              onClick={handleLocationJump}
+              disabled={isSearching}
+            >
+              {isSearching ? 'Searching…' : 'Go'}
+            </button>
+          </div>
+        </label>
+      </div>
+      <Map
+        pins={pins}
+        draftPin={draftPin}
+        onSelectLocation={handleMapSelection}
+        focusedLocation={focusedLocation}
+      />
+     <form
         onSubmit={handleSubmit}
         className="space-y-4 rounded-xl border border-rose-200 bg-white/70 p-4 text-rose-800 shadow-md backdrop-blur"
       >
