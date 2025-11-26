@@ -11,7 +11,7 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L, { LatLngLiteral } from 'leaflet';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export type StoryPin = {
   id: string;
@@ -65,35 +65,58 @@ export default function LeafletMap({
   onSelectLocation,
   focusedLocation,
 }: LeafletMapProps) {
+  const [showAttribution, setShowAttribution] = useState(false);
   const initialPosition: [number, number] = [51.5074, -0.1278];
 
   return (
-    <MapContainer
-      center={initialPosition}
-      zoom={13}
-      scrollWheelZoom={false}
-      style={{ height: '80vh', width: '100%' }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-      />
-      <MapClickHandler onSelectLocation={onSelectLocation} />
-      <FlyToLocation coords={focusedLocation} />
-      {pins.map((pin) => (
-        <Marker
-          key={pin.id}
-          position={[pin.lat, pin.lng]}
-          icon={pastelIcon}
+    <div className="relative">
+      <MapContainer
+        center={initialPosition}
+        zoom={13}
+        scrollWheelZoom={false}
+        attributionControl={false}
+        style={{ height: '80vh', width: '100%' }}
+      >
+        <TileLayer
+          attribution='Map tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        />
+        <MapClickHandler onSelectLocation={onSelectLocation} />
+        <FlyToLocation coords={focusedLocation} />
+        {pins.map((pin) => (
+          <Marker
+            key={pin.id}
+            position={[pin.lat, pin.lng]}
+            icon={pastelIcon}
+          >
+            <Popup>{pin.note}</Popup>
+          </Marker>
+        ))}
+        {draftPin && (
+          <Marker position={[draftPin.lat, draftPin.lng]} icon={pastelIcon}>
+            <Popup>Selected spot for your next story</Popup>
+          </Marker>
+        )}
+      </MapContainer>
+      <div className="pointer-events-none absolute bottom-4 right-4 z-[1000] flex flex-col items-end gap-2">
+        {showAttribution && (
+          <div className="pointer-events-auto rounded-2xl border border-white/30 bg-rose-900/90 px-4 py-3 text-xs text-rose-50 shadow-lg">
+            <p>
+              Map data © <a className="underline" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors
+            </p>
+            <p>
+              Tiles © <a className="underline" href="https://carto.com/attributions" target="_blank" rel="noreferrer">CARTO</a>
+            </p>
+          </div>
+        )}
+        <button
+          type="button"
+          className="pointer-events-auto rounded-full bg-rose-50/90 px-3 py-1 text-sm font-semibold text-rose-700 shadow"
+          onClick={() => setShowAttribution((prev) => !prev)}
         >
-          <Popup>{pin.note}</Popup>
-        </Marker>
-      ))}
-      {draftPin && (
-        <Marker position={[draftPin.lat, draftPin.lng]} icon={pastelIcon}>
-          <Popup>Selected spot for your next story</Popup>
-        </Marker>
-      )}
-    </MapContainer>
+          i
+        </button>
+      </div>
+    </div>
   );
 }

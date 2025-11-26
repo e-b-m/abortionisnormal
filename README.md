@@ -20,6 +20,25 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Supabase setup
+
+The Archiving Abortion page now persists data via Supabase (Postgres + Storage).
+
+1. Create a Supabase project and a storage bucket called `archive-media` (public access).
+2. Create a table `archive_entries` with at least the columns:
+   - `id` (uuid, default `uuid_generate_v4()`)
+   - `title` (text)
+   - `type` (text)
+   - `description` (text)
+   - `meta` (text)
+   - `href` (text, nullable)
+   - `media` (jsonb, default `[]`)
+   - `created_at` (timestamp with time zone, default `now()`)
+3. Copy `.env.local.example` to `.env.local` and fill in `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and (for uploads) `SUPABASE_SERVICE_ROLE_KEY`.
+4. Restart `npm run dev` so the environment variables load.
+
+Entries are fetched from `/api/archive` and media files are uploaded to the `archive-media` bucket automatically.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
