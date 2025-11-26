@@ -110,10 +110,10 @@ export default function Home() {
               abortion care touches every part of the world.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div className="rounded-3xl border border-white/20 bg-white/10 p-4 shadow-lg">
-                <p className="font-sans text-4xl font-semibold">+1</p>
-                <p className="font-sans text-rose-200">stories added today</p>
+            <div className="text-sm">
+              <div className="inline-block rounded-3xl border border-white/20 bg-white/10 px-3 py-1.5 shadow-lg">
+                <p className="font-sans text-4xl font-semibold text-rose-800">+1</p>
+                <p className="font-sans text-rose-600">stories added today</p>
               </div>
             </div>
           </section>
