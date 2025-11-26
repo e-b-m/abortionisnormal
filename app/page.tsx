@@ -115,10 +115,6 @@ export default function Home() {
                 <p className="font-sans text-4xl font-semibold">+1</p>
                 <p className="font-sans text-rose-200">stories added today</p>
               </div>
-              <div className="rounded-3xl border border-white/20 bg-white/10 p-4 shadow-lg">
-                <p className="font-sans text-4xl font-semibold">∞</p>
-                <p className="font-sans text-rose-200">possible futures</p>
-              </div>
             </div>
           </section>
 
