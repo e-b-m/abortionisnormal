@@ -26,29 +26,33 @@ export default function Home() {
               <div className="absolute right-0 mt-2 w-48 rounded-2xl bg-rose-600/95 p-4 shadow-xl">
                 {navLinks.map((link) =>
                   link.external ? (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2 py-2 text-sm uppercase tracking-widest text-white hover:text-rose-200"
-                    >
-                      <span aria-hidden>🌹</span>
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="flex items-center gap-2 py-2 text-sm uppercase tracking-widest text-white hover:text-rose-200"
-                    >
-                      <span aria-hidden>🌹</span>
-                      {link.label}
-                    </Link>
-                  )
-                )}
-              </div>
-            </details>
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 py-2 text-xs tracking-[0.2em] text-white hover:text-rose-200"
+                  >
+                    <span aria-hidden>🌹</span>
+                      {link.label.toLowerCase().replace(/^\w/, (ch) =>
+                        ch.toUpperCase()
+                      )}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="flex items-center gap-2 py-2 text-xs tracking-[0.2em] text-white hover:text-rose-200"
+                  >
+                    <span aria-hidden>🌹</span>
+                      {link.label.toLowerCase().replace(/^\w/, (ch) =>
+                        ch.toUpperCase()
+                      )}
+                  </Link>
+                )
+              )}
+            </div>
+          </details>
           </div>
           <div className="hidden h-full flex-col gap-4 px-6 py-10 lg:flex">
             <p className="text-xs uppercase tracking-[0.4em] text-rose-100">
@@ -62,19 +66,23 @@ export default function Home() {
                     href={link.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-3 rounded-[2rem] bg-white/10 px-4 py-3 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-white/20"
+                    className="flex items-center gap-3 rounded-[2rem] bg-white/10 px-4 py-3 text-xs font-semibold tracking-[0.1em] text-white transition hover:bg-white/20"
                   >
                     <span aria-hidden>🌹</span>
-                    {link.label}
+                    {link.label.toLowerCase().replace(/^\w/, (ch) =>
+                      ch.toUpperCase()
+                    )}
                   </a>
                 ) : (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="flex items-center gap-3 rounded-[2rem] bg-white/10 px-4 py-3 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-white/20"
+                    className="flex items-center gap-3 rounded-[2rem] bg-white/10 px-4 py-3 text-xs font-semibold tracking-[0.1em] text-white transition hover:bg-white/20"
                   >
                     <span aria-hidden>🌹</span>
-                    {link.label}
+                    {link.label.toLowerCase().replace(/^\w/, (ch) =>
+                      ch.toUpperCase()
+                    )}
                   </Link>
                 )
               )}
