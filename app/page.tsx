@@ -12,6 +12,11 @@ const navLinks = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-pink-100 …">
+      <div className="overflow-hidden border-b border-rose-200 bg-rose-600 text-white">
+        <div className="animate-marquee whitespace-nowrap py-2 text-xs uppercase tracking-[0.6em]">
+          Mapping abortion stories everywhere 🌹 Mapping abortion stories everywhere 🌹 Mapping abortion stories everywhere 🌹 Mapping abortion stories everywhere 🌹 Mapping abortion stories everywhere
+        </div>
+      </div>
       <div className="flex flex-col lg:flex-row">
         <aside className="bg-rose-600 text-white lg:w-56">
           <div className="flex items-center justify-between border-b border-white/20 px-6 py-4 lg:hidden">

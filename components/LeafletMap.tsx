@@ -75,7 +75,7 @@ export default function LeafletMap({
         zoom={13}
         scrollWheelZoom={false}
         attributionControl={false}
-        style={{ height: '80vh', width: '100%' }}
+        style={{ height: '90vh', width: '100%' }}
       >
         <TileLayer
           attribution='Map tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
