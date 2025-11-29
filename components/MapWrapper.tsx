@@ -115,12 +115,14 @@ export default function MapWrapper() {
           </div>
         </label>
       </div>
-      <Map
-        pins={pins}
-        draftPin={draftPin}
-        onSelectLocation={handleMapSelection}
-        focusedLocation={focusedLocation}
-      />
+      <div className="h-[60vh] overflow-hidden rounded-[32px] border border-white/30 bg-white/10 shadow-2xl backdrop-blur">
+        <Map
+          pins={pins}
+          draftPin={draftPin}
+          onSelectLocation={handleMapSelection}
+          focusedLocation={focusedLocation}
+        />
+      </div>
      <form
         onSubmit={handleSubmit}
         className="space-y-4 rounded-xl border border-rose-200 bg-white/70 p-4 text-rose-800 shadow-md backdrop-blur"
