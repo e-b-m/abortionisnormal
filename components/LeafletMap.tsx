@@ -67,6 +67,13 @@ export default function LeafletMap({
 }: LeafletMapProps) {
   const [showAttribution, setShowAttribution] = useState(false);
   const initialPosition: [number, number] = [51.5074, -0.1278];
+  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+  const tileUrl = mapboxToken
+    ? `https://api.mapbox.com/styles/v1/melendez98/cmikj6jwg00n801qw4hdbbgmc/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxToken}`
+    : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+  const tileAttribution = mapboxToken
+    ? '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © Mapbox'
+    : 'Map tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
   return (
     <div className="relative">
@@ -77,10 +84,7 @@ export default function LeafletMap({
         attributionControl={false}
         style={{ height: '90vh', width: '100%' }}
       >
-        <TileLayer
-          attribution='Map tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        />
+        <TileLayer attribution={tileAttribution} url={tileUrl} />
         <MapClickHandler onSelectLocation={onSelectLocation} />
         <FlyToLocation coords={focusedLocation} />
         {pins.map((pin) => (
@@ -105,7 +109,15 @@ export default function LeafletMap({
               Map data © <a className="underline" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors
             </p>
             <p>
-              Tiles © <a className="underline" href="https://carto.com/attributions" target="_blank" rel="noreferrer">CARTO</a>
+              {mapboxToken ? (
+                <>
+                  Style by <a className="underline" href="https://www.mapbox.com/" target="_blank" rel="noreferrer">Mapbox</a>
+                </>
+              ) : (
+                <>
+                  Tiles © <a className="underline" href="https://carto.com/attributions" target="_blank" rel="noreferrer">CARTO</a>
+                </>
+              )}
             </p>
           </div>
         )}

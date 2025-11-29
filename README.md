@@ -39,6 +39,14 @@ The Archiving Abortion page now persists data via Supabase (Postgres + Storage).
 
 Entries are fetched from `/api/archive` and media files are uploaded to the `archive-media` bucket automatically.
 
+### Mapbox style
+
+The map tiles now pull from a custom Mapbox style.
+
+1. Create a Mapbox access token (token must allow access to styles).
+2. Add `NEXT_PUBLIC_MAPBOX_TOKEN` to `.env.local`.
+3. If you want to swap styles, update the style URL inside `components/LeafletMap.tsx`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

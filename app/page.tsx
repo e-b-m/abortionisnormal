@@ -4,7 +4,7 @@ import Link from "next/link";
 import MapWrapper from "../components/MapWrapper";
 
 const navLinks = [
-  { label: "Learn more", href: "/about" },
+  { label: "About the project", href: "/about" },
   { label: "Information", href: "/information" },
   { label: "Archiving abortion", href: "/archiving-abortion" },
 ];
@@ -58,9 +58,9 @@ export default function Home() {
           </div>
         </aside>
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-10 lg:flex-row lg:items-start">
-          <section className="space-y-8 lg:w-1/2">
+          <section className="space-y-8 lg:w-1/3">
             <p className="font-sans text-xs uppercase tracking-[0.4em] text-rose-600">
-              Abortion is Normal
+              Open about abortion
             </p>
             <h1
               className="text-5xl font-bold uppercase leading-tight tracking-wide text-rose-800 sm:text-6xl"
@@ -76,8 +76,8 @@ export default function Home() {
 
           </section>
 
-          <section className="lg:w-1/2">
-            <div className="overflow-hidden rounded-[40px] border border-white/30 bg-white/10 shadow-2xl backdrop-blur">
+          <section className="lg:w-2/3">
+            <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-white/30 bg-white/10 shadow-2xl backdrop-blur">
               <MapWrapper />
             </div>
             <p className="font-sans mt-4 text-sm text-rose-600">

@@ -12,6 +12,9 @@ const Map = dynamic<LeafletMapProps>(() => import('./LeafletMap'), {
   loading: () => <p>Loading map…</p>,
 });
 
+const roundCoordinate = (value: number, precision = 3) =>
+  Number(value.toFixed(precision));
+
 export default function MapWrapper() {
   const [pins, setPins] = useState<StoryPin[]>([]);
   const [draftPin, setDraftPin] = useState<LatLngLiteral | null>(null);
@@ -36,8 +39,8 @@ export default function MapWrapper() {
     }
     const newPin: StoryPin = {
       id: `pin-${Date.now()}`,
-      lat: draftPin.lat,
-      lng: draftPin.lng,
+      lat: roundCoordinate(draftPin.lat),
+      lng: roundCoordinate(draftPin.lng),
       note: note.trim(),
     };
     setPins((prev) => [...prev, newPin]);
@@ -76,7 +79,10 @@ export default function MapWrapper() {
         return;
       }
       const first = results[0];
-      const coords = { lat: Number(first.lat), lng: Number(first.lon) };
+      const coords = {
+        lat: roundCoordinate(Number(first.lat)),
+        lng: roundCoordinate(Number(first.lon)),
+      };
       setFocusedLocation(coords);
       setDraftPin(coords);
       setStatus(`Centered on ${first.display_name}.`);
@@ -88,12 +94,24 @@ export default function MapWrapper() {
   };
 
   const handleMapSelection = (coords: LatLngLiteral) => {
-    setDraftPin(coords);
-    setFocusedLocation(coords);
+    const roundedCoords = {
+      lat: roundCoordinate(coords.lat),
+      lng: roundCoordinate(coords.lng),
+    };
+    setDraftPin(roundedCoords);
+    setFocusedLocation(roundedCoords);
   };
 
   return (
     <div className="space-y-4">
+      <div className="h-[60vh] overflow-hidden rounded-[32px] border border-white/30 bg-white/10 shadow-2xl backdrop-blur">
+        <Map
+          pins={pins}
+          draftPin={draftPin}
+          onSelectLocation={handleMapSelection}
+          focusedLocation={focusedLocation}
+        />
+      </div>
       <div className="rounded-xl border border-rose-200 bg-white/80 p-4 shadow-md">
         <label className="flex flex-col gap-2 text-sm text-rose-700 sm:flex-row sm:items-center">
           <span>Jump anywhere in the world</span>
@@ -114,14 +132,6 @@ export default function MapWrapper() {
             </button>
           </div>
         </label>
-      </div>
-      <div className="h-[60vh] overflow-hidden rounded-[32px] border border-white/30 bg-white/10 shadow-2xl backdrop-blur">
-        <Map
-          pins={pins}
-          draftPin={draftPin}
-          onSelectLocation={handleMapSelection}
-          focusedLocation={focusedLocation}
-        />
       </div>
      <form
         onSubmit={handleSubmit}
