@@ -10,7 +10,7 @@ import {
   useMap,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L, { LatLngLiteral } from 'leaflet';
+import L, { LatLngLiteral, LeafletMouseEvent } from 'leaflet';
 import { useEffect, useState } from 'react';
 
 export type StoryPin = {
@@ -42,7 +42,7 @@ function MapClickHandler({
   onSelectLocation: (coords: LatLngLiteral) => void;
 }) {
   useMapEvents({
-    click(e) {
+    click(e: LeafletMouseEvent) {
       onSelectLocation(e.latlng);
     },
   });
