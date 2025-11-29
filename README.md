@@ -41,11 +41,11 @@ Entries are fetched from `/api/archive` and media files are uploaded to the `arc
 
 ### Mapbox style
 
-The map tiles now pull from a custom Mapbox style.
+The map tiles default to the Carto Voyager basemap, but you can override them with any XYZ tile source.
 
-1. Create a Mapbox access token (token must allow access to styles).
-2. Add `NEXT_PUBLIC_MAPBOX_TOKEN` to `.env.local`.
-3. If you want to swap styles, update the style URL inside `components/LeafletMap.tsx`.
+1. For Mapbox, create a token and set `NEXT_PUBLIC_MAPBOX_TOKEN` **or** set `NEXT_PUBLIC_TILE_URL` / `NEXT_PUBLIC_TILE_ATTRIBUTION` to point to any custom provider.
+2. Restart `npm run dev` whenever you change `.env.local`.
+3. The app will automatically use your custom tile URL; otherwise it falls back to Carto Voyager.
 
 ## Learn More
 

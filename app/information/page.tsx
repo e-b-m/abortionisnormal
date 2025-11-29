@@ -67,7 +67,7 @@ export default function InformationPage() {
             className="text-5xl font-bold uppercase tracking-widest text-rose-800"
             style={{ fontFamily: "var(--font-queer-map)" }}
           >
-            Resources for care & organizing
+            Resources for care and organising
           </h1>
           <p className="text-lg text-rose-600">
             Curated links for UK-based support, funding, and storytelling so you

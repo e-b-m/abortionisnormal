@@ -67,13 +67,14 @@ export default function LeafletMap({
 }: LeafletMapProps) {
   const [showAttribution, setShowAttribution] = useState(false);
   const initialPosition: [number, number] = [51.5074, -0.1278];
-  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
-  const tileUrl = mapboxToken
-    ? `https://api.mapbox.com/styles/v1/melendez98/cmikj6jwg00n801qw4hdbbgmc/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxToken}`
-    : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-  const tileAttribution = mapboxToken
-    ? '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © Mapbox'
-    : 'Map tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+  const customTileUrl = process.env.NEXT_PUBLIC_TILE_URL;
+  const customTileAttribution = process.env.NEXT_PUBLIC_TILE_ATTRIBUTION;
+  const tileUrl =
+    customTileUrl ??
+    'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+  const tileAttribution =
+    customTileAttribution ??
+    'Map tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
   return (
     <div className="relative">

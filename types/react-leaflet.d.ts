@@ -1,8 +1,8 @@
 declare module 'react-leaflet' {
-  export const MapContainer: any;
-  export const TileLayer: any;
-  export const Marker: any;
-  export const Popup: any;
-  export const useMapEvents: any;
-  export const useMap: any;
+  export const MapContainer: unknown;
+  export const TileLayer: unknown;
+  export const Marker: unknown;
+  export const Popup: unknown;
+  export const useMapEvents: unknown;
+  export const useMap: unknown;
 }

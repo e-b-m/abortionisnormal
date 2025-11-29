@@ -19,7 +19,9 @@ export default function MapWrapper() {
   const [pins, setPins] = useState<StoryPin[]>([]);
   const [draftPin, setDraftPin] = useState<LatLngLiteral | null>(null);
   const [note, setNote] = useState('');
+  const [quickStory, setQuickStory] = useState('');
   const [status, setStatus] = useState<string | null>(null);
+  const [showSteps, setShowSteps] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [focusedLocation, setFocusedLocation] = useState<LatLngLiteral | null>({
@@ -27,26 +29,33 @@ export default function MapWrapper() {
     lng: -0.1278,
   });
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const addStoryToMap = (text: string) => {
     if (!draftPin) {
       setStatus('Tap the map to choose where your note belongs.');
       return;
     }
-    if (!note.trim()) {
+    if (!text.trim()) {
       setStatus('Write a short story or feeling before saving.');
       return;
     }
+
     const newPin: StoryPin = {
       id: `pin-${Date.now()}`,
       lat: roundCoordinate(draftPin.lat),
       lng: roundCoordinate(draftPin.lng),
-      note: note.trim(),
+      note: text.trim(),
     };
     setPins((prev) => [...prev, newPin]);
     setNote('');
+    setQuickStory('');
     setDraftPin(null);
     setStatus('Story added to the map. Thank you.');
+    setShowSteps(false);
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    addStoryToMap(note);
   };
 
   const handleLocationJump = async () => {
@@ -100,20 +109,56 @@ export default function MapWrapper() {
     };
     setDraftPin(roundedCoords);
     setFocusedLocation(roundedCoords);
+    setShowSteps(true);
   };
 
   return (
     <div className="space-y-4">
-      <div className="h-[60vh] overflow-hidden rounded-[32px] border border-white/30 bg-white/10 shadow-2xl backdrop-blur">
-        <Map
-          pins={pins}
-          draftPin={draftPin}
-          onSelectLocation={handleMapSelection}
-          focusedLocation={focusedLocation}
-        />
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+        <div className="relative h-[60vh] flex-1 overflow-hidden rounded-[32px] shadow-xl">
+          <Map
+            pins={pins}
+            draftPin={draftPin}
+            onSelectLocation={handleMapSelection}
+            focusedLocation={focusedLocation}
+          />
+        </div>
+        <div className="flex flex-col items-center gap-3 sm:w-auto">
+          <button
+            type="button"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-rose-600 text-2xl font-bold text-white shadow-lg transition hover:bg-rose-700"
+            onClick={() => setShowSteps((prev) => !prev)}
+            aria-label="Toggle story instructions"
+          >
+            +
+          </button>
+          {showSteps && (
+            <div className="w-64 rounded-2xl border border-rose-200 bg-white/95 p-4 text-sm text-rose-700 shadow-xl">
+              <p className="font-semibold">
+                1. Find the location of your story with the map and click to add a pin.
+              </p>
+              <p className="mt-2">2. Share your story in this space.</p>
+              <textarea
+                className="mt-3 w-full rounded-lg border border-rose-200 bg-white/90 p-2 text-xs text-rose-800 focus:border-rose-400 focus:outline-none"
+                rows={3}
+                placeholder="Share your story here…"
+                value={quickStory}
+                onChange={(event) => setQuickStory(event.target.value)}
+              />
+              <button
+                type="button"
+                className="mt-3 w-full rounded-full bg-rose-600 px-3 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-rose-700 disabled:bg-rose-300"
+                disabled={!draftPin || !quickStory.trim()}
+                onClick={() => addStoryToMap(quickStory)}
+              >
+                Send
+              </button>
+            </div>
+          )}
+        </div>
       </div>
       <div className="rounded-xl border border-rose-200 bg-white/80 p-4 shadow-md">
-        <label className="flex flex-col gap-2 text-sm text-rose-700 sm:flex-row sm:items-center">
+        <label className="flex flex-col gap-2 text-sm text-rose-500 sm:flex-row sm:items-center">
           <span>Jump anywhere in the world</span>
           <div className="flex w-full gap-2">
             <input
@@ -137,29 +182,7 @@ export default function MapWrapper() {
         onSubmit={handleSubmit}
         className="space-y-4 rounded-xl border border-rose-200 bg-white/70 p-4 text-rose-800 shadow-md backdrop-blur"
       >
-        <div className="text-sm">
-          {draftPin ? (
-            <p>
-              Selected location:{' '}
-              <span className="font-semibold">
-                {draftPin.lat.toFixed(4)}, {draftPin.lng.toFixed(4)}
-              </span>
-            </p>
-          ) : (
-            <p>Tap anywhere on the map to choose where this story belongs.</p>
-          )}
-        </div>
-        <textarea
-          className="w-full rounded-lg border border-rose-200 bg-white/80 p-3 text-sm text-rose-900 placeholder-rose-300 focus:border-rose-400 focus:outline-none"
-          rows={4}
-          placeholder="Share a feeling, story, or note about abortion in this place…"
-          value={note}
-          onChange={(event) => setNote(event.target.value)}
-        />
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-rose-500">
-            Notes are anonymous. Please keep them caring.
-          </p>
           <button
             type="submit"
             className="rounded-full bg-rose-600 px-5 py-2 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-rose-700 disabled:bg-rose-300"

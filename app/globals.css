@@ -38,3 +38,7 @@ body {
     transform: translateX(-50%);
   }
 }
+
+.leaflet-tile {
+  filter: hue-rotate(320deg) saturate(1.4) brightness(1.1);
+}
