@@ -6,6 +6,7 @@ const sections = [
   { label: "About the project", href: "/about" },
   { label: "Information", href: "/information" },
   { label: "Archiving abortion", href: "/archiving-abortion" },
+  { label: "Abortion timeline", href: "/abortion-timeline" },
 ];
 
 export default function CategoryFilter({

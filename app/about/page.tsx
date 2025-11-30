@@ -35,11 +35,6 @@ export default function AboutPage() {
               Abortion Is Normal
             </h1>
           </Link>
-          <p className="text-lg text-rose-600">
-            Inspired by Queering the Map, this experiment documents abortion
-            stories, rituals, awe, and grief—starting with the UK and radiating
-            outward as the archive grows.
-          </p>
         </header>
 
         <section className="rounded-3xl border border-rose-200 bg-white p-6 text-left shadow-lg">
@@ -49,7 +44,7 @@ export default function AboutPage() {
           <h2 className="mt-3 text-3xl font-semibold text-rose-800">
             A personal project rooted in care
           </h2>
-          <p className="mt-4 text-rose-700">
+          <p className="mt-4 text-rose-600">
             I&apos;m a storyteller, writer and visual communicator who had an
             abortion in 2022 at the height of Roe v. Wade. It remains one of the
             most difficult choices I have had to make and one that I didn&apos;t
@@ -64,7 +59,7 @@ export default function AboutPage() {
             It&apos;s part art piece, part resource, and part love letter to
             everyone who has needed an abortion or helped someone through one.
           </p>
-          <p className="mt-3 text-rose-700">
+          <p className="mt-3 text-rose-600">
             Outside of this project, I host teach-ins, collaborate with mutual
             aid groups, and document oral histories so our stories don’t get
             erased. If you want to collaborate or just say hi, reach out through
@@ -81,7 +76,7 @@ export default function AboutPage() {
               <h2 className="text-sm uppercase tracking-[0.3em] text-rose-500">
                 {section.title}
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-rose-700">
+              <p className="mt-3 text-sm leading-relaxed text-rose-600">
                 {section.body}
               </p>
             </article>

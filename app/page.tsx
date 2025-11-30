@@ -29,12 +29,10 @@ export default function Home() {
                 Open about abortion
               </p>
               <h1
-                className="w-full text-left text-5xl font-bold uppercase leading-tight tracking-[0.3em] text-rose-800 sm:text-6xl"
+                className="w-full text-left text-4xl font-bold uppercase leading-tight tracking-[0.25em] text-rose-800 sm:text-5xl"
                 style={{ fontFamily: "var(--font-queer-map)" }}
               >
-                Mapping abortion stories,
-                <br />
-                everywhere
+                Mapping abortion stories, everywhere
               </h1>
             </div>
             <p className="font-sans text-lg text-rose-500">

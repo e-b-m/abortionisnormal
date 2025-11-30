@@ -115,7 +115,7 @@ export default function MapWrapper() {
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-        <div className="relative h-[60vh] flex-1 overflow-hidden rounded-[32px] shadow-xl">
+        <div className="relative h-[60vh] flex-1 overflow-hidden rounded-[32px]">
           <Map
             pins={pins}
             draftPin={draftPin}
@@ -157,7 +157,7 @@ export default function MapWrapper() {
           )}
         </div>
       </div>
-      <div className="rounded-xl border border-rose-200 bg-white/80 p-4 shadow-md">
+      <div>
         <label className="flex flex-col gap-2 text-sm text-rose-500 sm:flex-row sm:items-center">
           <span>Jump anywhere in the world</span>
           <div className="flex w-full gap-2">
@@ -178,21 +178,11 @@ export default function MapWrapper() {
           </div>
         </label>
       </div>
-     <form
-        onSubmit={handleSubmit}
-        className="space-y-4 rounded-xl border border-rose-200 bg-white/70 p-4 text-rose-800 shadow-md backdrop-blur"
-      >
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <button
-            type="submit"
-            className="rounded-full bg-rose-600 px-5 py-2 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-rose-700 disabled:bg-rose-300"
-            disabled={!draftPin}
-          >
-            Pin your story
-          </button>
-        </div>
-        {status && <p className="text-xs text-rose-600">{status}</p>}
-      </form>
+      {status && (
+        <p className="text-xs text-rose-600">
+          {status}
+        </p>
+      )}
     </div>
   );
 }
