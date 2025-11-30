@@ -157,7 +157,7 @@ export default function MapWrapper() {
           )}
         </div>
       </div>
-      <div>
+        <div className="pl-4">
         <label className="flex flex-col gap-2 text-sm text-rose-500 sm:flex-row sm:items-center">
           <span>Jump anywhere in the world</span>
           <div className="flex w-full gap-2">

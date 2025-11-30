@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const sections = [
@@ -28,23 +29,16 @@ export default function CategoryFilter({
       <button
         type="button"
         onClick={() => setMenuOpen((prev) => !prev)}
-        className="flex h-16 w-16 items-center justify-center rounded-full bg-transparent transition focus:outline-none"
+        className="flex h-20 w-20 items-center justify-center rounded-full bg-transparent transition focus:outline-none"
         aria-label="Toggle site menu"
       >
-        {/* Pixel cursor built with an inline SVG so it always looks crisp */}
-        <svg
-          viewBox="0 0 24 24"
-          className="h-12 w-12 fill-white stroke-black"
-          style={{ filter: "drop-shadow(0 0 12px rgba(255,105,180,0.9))" }}
-          role="presentation"
-          aria-hidden
-        >
-          <path
-            d="M5 3v17l4-4 3 7 3-1.3-3-7.6H18z"
-            strokeWidth={2}
-            strokeLinejoin="miter"
-          />
-        </svg>
+        <Image
+          src="/icons/IconDesign.svg"
+          alt="Navigation cursor"
+          width={100}
+          height={100}
+          priority
+        />
       </button>
       {menuOpen && (
         <div

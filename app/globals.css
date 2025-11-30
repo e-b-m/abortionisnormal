@@ -78,55 +78,84 @@ body {
 
 .timeline-track {
   position: relative;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(260px, 1fr);
-  gap: 1.5rem;
-  padding: 2.5rem 0 1rem;
-  overflow-x: auto;
-  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem 0 4rem;
 }
 
 .timeline-track::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 1.75rem;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(255, 46, 99, 0), rgba(255, 46, 99, 0.8), rgba(255, 46, 99, 0));
-  pointer-events: none;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 46, 99, 0.95), rgba(255, 46, 99, 0.2));
+  transform: translateX(-50%);
+}
+
+.timeline-node {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 4rem;
+  align-items: flex-start;
+}
+
+.timeline-node--left .timeline-card {
+  grid-column: 1 / 2;
+  justify-self: end;
+}
+
+.timeline-node--right .timeline-card {
+  grid-column: 2 / 3;
+  justify-self: start;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid #ff2e63;
+  background: white;
+  box-shadow: 0 0 0 8px rgba(255, 46, 99, 0.15);
 }
 
 .timeline-card {
   position: relative;
-  min-height: 240px;
-  padding: 1.75rem;
+  width: 100%;
+  max-width: 420px;
+  padding: 1.35rem 1.6rem;
   border-radius: 18px;
   background: #fffaf3;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 46, 99, 0.25);
+  box-shadow: 0 15px 35px rgba(225, 29, 72, 0.12);
 }
 
-.timeline-dot {
+.timeline-card::after {
+  content: "";
   position: absolute;
-  top: -15px;
-  left: 1.75rem;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 3px solid #ff2e63;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(255, 46, 99, 0.24);
+  top: 1.5rem;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
 }
 
-.timeline-connector {
-  position: absolute;
-  top: -5px;
-  left: calc(1.75rem + 20px);
-  right: -1.5rem;
-  height: 2px;
-  background: rgba(255, 46, 99, 0.4);
+.timeline-node--left .timeline-card::after {
+  right: -16px;
+  border-left: 16px solid #fffaf3;
+}
+
+.timeline-node--right .timeline-card::after {
+  left: -16px;
+  border-right: 16px solid #fffaf3;
 }
 
 .timeline-era {
@@ -151,22 +180,97 @@ body {
 
 @media (max-width: 720px) {
   .timeline-track {
-    grid-auto-flow: row;
-    grid-auto-columns: unset;
+    padding-left: 1.25rem;
+    padding-right: 0;
   }
 
   .timeline-track::before {
-    top: auto;
-    bottom: 0;
-    left: 1rem;
-    right: 1rem;
+    left: 0.5rem;
   }
 
-  .timeline-card {
-    min-height: auto;
+  .timeline-node {
+    grid-template-columns: 1fr;
+    row-gap: 0.75rem;
   }
 
-  .timeline-connector {
+  .timeline-node--left .timeline-card,
+  .timeline-node--right .timeline-card {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+  }
+
+  .timeline-card::after {
     display: none;
   }
+
+  .timeline-marker {
+    left: 0.5rem;
+  }
+}
+
+.timeline-form {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 24px;
+  background: #fff1f6;
+  border: 1px solid rgba(255, 46, 99, 0.25);
+  box-shadow: 0 10px 25px rgba(255, 46, 99, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timeline-form p {
+  margin: 0;
+  color: #c1121f;
+}
+
+.timeline-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.timeline-form-grid label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c1121f;
+  gap: 0.4rem;
+}
+
+.timeline-form-grid input,
+.timeline-form-grid textarea {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 46, 99, 0.3);
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  background: white;
+  color: #701a3c;
+  font-family: inherit;
+}
+
+.timeline-form button {
+  align-self: flex-start;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  border: none;
+  background: #ff2e63;
+  color: white;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.timeline-form button:hover {
+  transform: translateY(-2px);
+}
+
+.timeline-form-status {
+  font-size: 0.85rem;
+  color: #c1121f;
 }
