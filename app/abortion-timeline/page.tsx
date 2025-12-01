@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import CategoryFilter from "../../components/CategoryFilter";
+import SiteFooter from "../../components/SiteFooter";
 
 const initialTimeline = [
   {
@@ -75,6 +77,9 @@ export default function AbortionTimelinePage() {
 
   return (
     <main className="min-h-screen bg-pink-100 py-12 text-rose-900">
+      <div className="px-6 pb-4">
+        <CategoryFilter />
+      </div>
       <section
         className="timeline-landscape"
         aria-label="3500 years of abortion methods"
@@ -151,6 +156,7 @@ export default function AbortionTimelinePage() {
           {status && <p className="timeline-form-status">{status}</p>}
         </form>
       </section>
+      <SiteFooter />
     </main>
   );
 }

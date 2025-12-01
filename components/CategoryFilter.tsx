@@ -8,19 +8,20 @@ const sections = [
   { label: "Information", href: "/information" },
   { label: "Archiving abortion", href: "/archiving-abortion" },
   { label: "Abortion timeline", href: "/abortion-timeline" },
+  { label: "World continents", href: "/world-continents" },
 ];
 
 export default function CategoryFilter({
   onSelect,
 }: {
-  onSelect: (value: string) => void;
+  onSelect?: (value: string) => void;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleChange = (href: string, label: string) => {
     setSelected(label);
-    onSelect(label);
+    onSelect?.(label);
     window.location.href = href;
   };
 

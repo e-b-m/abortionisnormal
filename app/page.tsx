@@ -5,6 +5,7 @@
 import { useCallback } from "react";
 import MapWrapper from "../components/MapWrapper";
 import CategoryFilter from "../components/CategoryFilter";
+import SiteFooter from "../components/SiteFooter";
 
 export default function Home() {
   const handleCategorySelect = useCallback((category: string) => {
@@ -49,6 +50,7 @@ export default function Home() {
           </section>
         </div>
       </div>
+      <SiteFooter />
     </main>
   );
 }

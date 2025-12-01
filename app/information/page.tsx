@@ -1,5 +1,7 @@
 // app/information/page.tsx
 import Link from "next/link";
+import CategoryFilter from "../../components/CategoryFilter";
+import SiteFooter from "../../components/SiteFooter";
 
 const resourceSections = [
   {
@@ -58,6 +60,9 @@ const resourceSections = [
 export default function InformationPage() {
   return (
     <main className="min-h-screen bg-pink-100 text-rose-900">
+      <div className="px-6 pb-4">
+        <CategoryFilter />
+      </div>
       <div className="mx-auto max-w-5xl px-6 py-16 space-y-10 font-sans">
         <header className="space-y-4 text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-rose-600">
@@ -142,6 +147,7 @@ export default function InformationPage() {
           </div>
         </section>
       </div>
+      <SiteFooter />
     </main>
   );
 }

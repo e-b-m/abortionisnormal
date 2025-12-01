@@ -3,6 +3,8 @@
 
 import { DragEvent, FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
+import CategoryFilter from "../../components/CategoryFilter";
+import SiteFooter from "../../components/SiteFooter";
 
 type MediaPreview = {
   name: string;
@@ -202,6 +204,9 @@ export default function ArchivingAbortionPage() {
 
   return (
     <main className="min-h-screen bg-pink-100 text-rose-900">
+      <div className="px-6 pb-4">
+        <CategoryFilter />
+      </div>
       <div className="mx-auto max-w-5xl px-6 py-16 space-y-12 font-sans">
         <header className="space-y-4 text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-rose-600">
@@ -531,6 +536,7 @@ export default function ArchivingAbortionPage() {
           </div>
         </section>
       </div>
+      <SiteFooter />
     </main>
   );
 }

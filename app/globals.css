@@ -178,6 +178,125 @@ body {
   line-height: 1.5;
 }
 
+.world-map-card {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(280px, 1fr);
+  gap: 2rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.world-map-canvas {
+  position: relative;
+  aspect-ratio: 18 / 9;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  border: none;
+}
+
+.continent-tile {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  background: transparent;
+  width: 140px;
+  min-height: 120px;
+}
+
+.continent-tile:hover,
+.continent-tile:focus-visible {
+  transform: translate(-50%, -50%) translateY(-4px);
+}
+
+.continent-tile--active {
+  transform: translate(-50%, -50%);
+}
+
+.continent-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #9d174d;
+}
+
+.continent-text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.continent-shape {
+  display: block;
+  background: #ff2e63;
+  border-radius: 4px;
+  opacity: 0.92;
+  WebkitMaskRepeat: no-repeat;
+  mask-repeat: no-repeat;
+  WebkitMaskSize: contain;
+  mask-size: contain;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.continent-tile:hover .continent-shape,
+.continent-tile:focus-visible .continent-shape {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+
+.continent-panel {
+  position: relative;
+  border-radius: 22px;
+  padding: 1.4rem;
+  background: #fff;
+  border: 1px solid rgba(255, 46, 99, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), 0 20px 30px rgba(225, 29, 72, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.continent-panel__eyebrow {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #f43f5e;
+}
+
+.continent-panel__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #9d174d;
+}
+
+.continent-panel__summary {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #7f1d4b;
+}
+
+.continent-panel__focus {
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 46, 99, 0.35);
+  background: #fff5f8;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
 @media (max-width: 720px) {
   .timeline-track {
     padding-left: 1.25rem;
@@ -205,6 +324,32 @@ body {
 
   .timeline-marker {
     left: 0.5rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .world-map-card {
+    grid-template-columns: 1fr;
+  }
+
+  .world-map-canvas {
+    aspect-ratio: 4 / 5;
+  }
+
+  .continent-tile {
+    position: static;
+    transform: none;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .continent-tile--active {
+    transform: none;
+  }
+
+  .continent-tile:hover,
+  .continent-tile:focus-visible {
+    transform: none;
   }
 }
 
